@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [weatherData, setWeatherData] = useState(null);
+  const [city, setCity] = useState("Thessaloniki");
+
+  const API_KEY = "86cb18ebffb49f9f46a95d4405882d20";
+
+  useEffect(() => {
+    const fetchWeatherData = async (cityName) => {
+      try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=imperial`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setWeatherData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchWeatherData(city);
+  }, [city]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="wrapper">
+      <div className="header">
+        <h1 className="city">Thessaloniki</h1>
+        <p className="temperature">16°C</p>
+        <p className="condition">Cloudy</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="weather-details">
+        <div>
+          <p>Humidity</p>
+          <p>74%</p>
+        </div>
+        <div>
+          <p>Wind Speed</p>
+          <p>2.1m/s</p>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="forecast">
+        <h2 className="forecast-header">5-Day Forecast</h2>
+        <div className="forecast-days">
+          <div className="forecast-day">
+            <p>Monday</p>
+            <p>Cloudy</p>
+            <p>17°C</p>
+          </div>
+          <div className="forecast-day">
+            <p>Tuesday</p>
+            <p>Sunny</p>
+            <p>18°C</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
