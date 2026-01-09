@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
+import Input from "./InputSearch";
 
 function App() {
-  const [searchInput, setSearchInput] = useState("");
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState(null);
 
   const API_KEY = "86cb18ebffb49f9f46a95d4405882d20";
-
-  function handleSearch(e) {
-    e.preventDefault();
-    setCity(searchInput);
-  }
 
   useEffect(() => {
     if (!city) return;
@@ -35,18 +30,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      <form onSubmit={handleSearch} className="search-form">
-        <input
-          type="text"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          placeholder="Enter city name"
-          className="search-input"
-        />
-        <button type="submit" className="search-button">
-          Search
-        </button>
-      </form>
+      <Input onSearch={setCity} />
       {weatherData && (
         <>
           <div className="header">
