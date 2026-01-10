@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import Input from "./InputSearch";
+import InputSearch from "./InputSearch";
+
 
 function App() {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState(null);
+  const [isCelsius, setIsCelsius] = useState(true);
 
   const API_KEY = "86cb18ebffb49f9f46a95d4405882d20";
 
@@ -28,14 +30,26 @@ function App() {
     fetchWeatherData();
   }, [city]);
 
+  function handleToggle() {
+    setIsCelsius(!isCelsius);
+  }
+
   return (
     <div className="wrapper">
-      <Input onSearch={setCity} />
+      <div className="header">
+        <h1 className="header-title">My first weather app</h1>
+        <button className="button" onClick={handleToggle}>
+          °C/°F
+        </button>
+      </div>
+      <InputSearch setCity={setCity} />
       {weatherData && (
         <>
-          <div className="header">
+          <div className="main">
             <h1 className="city">{weatherData.name}</h1>
-            <p className="temperature">{weatherData.main.temp.toFixed(0)}°C</p>
+            <p className="temperature">
+              {isCelsius ? `${weatherData.main.temp.toFixed(0)}°C` : `${((weatherData.main.temp * 9) / 5 + 32).toFixed(0)}°F`}
+            </p>
             <img
               src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
               alt={weatherData.weather[0].description}

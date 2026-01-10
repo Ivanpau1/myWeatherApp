@@ -1,11 +1,10 @@
 import { useState } from "react";
-import Button from "./Button";
 
-export default function InputSearch({ onSearch }) {
+export default function InputSearch({ setCity }) {
   const [searchInput, setSearchInput] = useState("");
   function handleSearch(e) {
     e.preventDefault();
-    onSearch(searchInput);
+    setCity(searchInput);
   }
 
   return (
@@ -17,7 +16,9 @@ export default function InputSearch({ onSearch }) {
         placeholder="Enter city name"
         className="search-input"
       />
-      <Button action="Search" />
+      <button type="submit" className="button" onClick={handleSearch}>
+        Search
+      </button>
     </form>
   );
 }
