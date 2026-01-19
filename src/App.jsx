@@ -5,8 +5,6 @@ import ToggleCelsius from "./ToggleCelsius";
 function App() {
   const [isCelsius, setIsCelsius] = useState(true);
 
-  const API_KEY = "86cb18ebffb49f9f46a95d4405882d20";
-
   return (
     <div className="wrapper">
       <div className="header">

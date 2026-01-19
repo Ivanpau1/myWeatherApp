@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ToggleFavorite from "./ToggleFavorite";
 
 export default function InputSearch({ isCelsius }) {
   const [city, setCity] = useState("");
@@ -35,22 +36,25 @@ export default function InputSearch({ isCelsius }) {
 
   return (
     <>
-    <form onSubmit={handleSearch} className="search-form">
-      <input
-        type="text"
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
-        placeholder="Enter city name"
-        className="search-input"
-      />
-      <button type="submit" className="button">
-        Search
-      </button>
-    </form>
-    {weatherData && (
-      <>
+      <form onSubmit={handleSearch} className="search-form">
+        <input
+          type="text"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          placeholder="Enter city name"
+          className="search-input"
+        />
+        <button type="submit" className="button">
+          Search
+        </button>
+      </form>
+      {weatherData && (
+        <>
           <div className="main">
-            <h1 className="city">{weatherData.name}</h1>
+            <h1 className="city">
+              {weatherData.name}
+              <ToggleFavorite city={weatherData.name} />
+            </h1>
             <p className="temperature">
               {isCelsius
                 ? `${weatherData.main.temp.toFixed(0)}°C`
@@ -72,8 +76,8 @@ export default function InputSearch({ isCelsius }) {
               <p className="number">{weatherData.wind.speed}m/s</p>
             </div>
           </div>
-      </>
+        </>
       )}
-    </> 
+    </>
   );
 }
