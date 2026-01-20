@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import ToggleFavorite from "./ToggleFavorite";
 
-export default function InputSearch({ isCelsius }) {
-  const [city, setCity] = useState("");
+export default function InputSearch({
+  isCelsius,
+  city,
+  setCity,
+  favorites,
+  setFavorites,
+}) {
   const [searchInput, setSearchInput] = useState("");
   const [weatherData, setWeatherData] = useState(null);
 
@@ -53,7 +58,11 @@ export default function InputSearch({ isCelsius }) {
           <div className="main">
             <h1 className="city">
               {weatherData.name}
-              <ToggleFavorite city={weatherData.name} />
+              <ToggleFavorite
+                city={weatherData.name}
+                favorites={favorites}
+                setFavorites={setFavorites}
+              />
             </h1>
             <p className="temperature">
               {isCelsius

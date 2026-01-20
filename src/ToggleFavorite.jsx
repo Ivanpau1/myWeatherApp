@@ -1,15 +1,4 @@
-import { useState, useEffect } from "react";
-
-export default function ToggleFavorite({ city }) {
-  const [favorites, setFavorites] = useState(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    return storedFavorites ? JSON.parse(storedFavorites) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
-
+export default function ToggleFavorite({ city, favorites, setFavorites }) {
   const handleToggleFavorite = (city) => {
     const newFavorites = favorites.includes(city)
       ? favorites.filter((c) => c !== city)

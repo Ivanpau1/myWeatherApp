@@ -1,22 +1,16 @@
-import { useNavigate } from "react-router-dom";
-import weatherLogo from "./assets/weatherLogo.png";
-
-export default function FavoriteCities() {
-  const navigate = useNavigate();
-
-  function goToIndex() {
-    navigate("/");
-  }
+export default function FavoriteCities({ favorites = [], setCity }) {
+  if (favorites.length === 0) return null;
 
   return (
-    <div className="wrapper">
-      <div className="header">
-        <img src={weatherLogo} alt="Weather Logo" />
-        <h1 className="header-title">My favorite cities </h1>
-        <button onClick={goToIndex} className="button">
-          🏠
-        </button>
-      </div>
+    <div className="favorites">
+      <h2>My favorite cities</h2>
+      <ul>
+        {favorites.map((city) => (
+          <li key={city}>
+            <button onClick={() => setCity(city)}>{city}</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
