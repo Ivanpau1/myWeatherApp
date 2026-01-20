@@ -1,0 +1,47 @@
+[33mcommit dbe5887497374b281e9101a279ecff7e38c86fab[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Ivan Paul <pavlidis.ioan@gmail.com>
+Date:   Tue Jan 20 01:20:26 2026 +0200
+
+    Created a new component for saving favorite cities to local storage
+
+[33mcommit 9c8eae10a1ab51209f79b73e1349d0cb398600f3[m
+Author: Ivan Paul <pavlidis.ioan@gmail.com>
+Date:   Mon Jan 19 13:51:15 2026 +0200
+
+    Moved the Toggle Button to another component. Simplified the App.jsx
+
+[33mcommit a8462f2a0329e6c0169b66f5c59ecb9d37d7ca1b[m
+Author: Ivan Paul <pavlidis.ioan@gmail.com>
+Date:   Sun Jan 11 01:11:00 2026 +0200
+
+    Removed the Button component, added temperature toggle button
+
+[33mcommit df8fb605796be62aefabf2e5deef1d31adbbe0ab[m
+Author: Ivan Paul <pavlidis.ioan@gmail.com>
+Date:   Fri Jan 9 20:55:38 2026 +0200
+
+    Split the code to Button and InputSearch components
+
+[33mcommit 5d8564e0a03907b1960333056661aeb8673115da[m
+Author: Ivan Paul <pavlidis.ioan@gmail.com>
+Date:   Thu Jan 8 15:59:56 2026 +0200
+
+    Fixed the bug -  Calling setState synchronously within an effect
+
+[33mcommit 92308146c220fa9beef460fd562777158ac3e7cb[m
+Author: Ivan Paul <pavlidis.ioan@gmail.com>
+Date:   Tue Jan 6 14:35:29 2026 +0200
+
+    Inserted dynamic values to the UI
+
+[33mcommit 9d8f79418fba6528b561201a2996f005a867833b[m
+Author: Ivan Paul <pavlidis.ioan@gmail.com>
+Date:   Tue Jan 6 01:27:49 2026 +0200
+
+    Made a temp UI interface without dynamic values
+
+[33mcommit 7c53400d23229cc663d99f391e0573b99120693f[m
+Author: Ivan Paul <pavlidis.ioan@gmail.com>
+Date:   Tue Jan 6 00:03:02 2026 +0200
+
+    Initial commit
