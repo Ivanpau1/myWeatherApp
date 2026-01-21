@@ -49,7 +49,7 @@ export default function InputSearch({
           placeholder="Enter city name"
           className="search-input"
         />
-        <button type="submit" className="button">
+        <button type="submit" className="search-btn">
           Search
         </button>
       </form>

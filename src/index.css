@@ -1,11 +1,16 @@
-body {
+.header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
 }
 
-.wrapper {
-  min-width: 400px;
+.button {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.9;
 }
 
 .city {
@@ -18,47 +23,5 @@ body {
 }
 
 .condition {
-  font-size: 1.5rem;
-}
-
-.weather-details {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   font-size: 1.25rem;
-}
-
-.number {
-  font-weight: bold;
-}
-
-.search-input {
-  flex: 1;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.button {
-  padding: 10px 15px;
-  font-size: 16px;
-}
-
-.form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.header-image {
-  flex: 1;
-}
-
-.header-title {
-  flex: 1;
-  min-width: 300px;
 }

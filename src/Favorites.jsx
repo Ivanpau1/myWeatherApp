@@ -7,7 +7,9 @@ export default function FavoriteCities({ favorites = [], setCity }) {
       <ul>
         {favorites.map((city) => (
           <li key={city}>
-            <button onClick={() => setCity(city)}>{city}</button>
+            <button className="button" onClick={() => setCity(city)}>
+              {city}
+            </button>
           </li>
         ))}
       </ul>

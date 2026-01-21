@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
-import InputSearch from "./InputSearch";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import React, { Suspense } from "react";
 import ToggleCelsius from "./ToggleCelsius";
-import Favorites from "./Favorites";
 import weatherLogo from "./assets/weatherLogo.png";
+
+import Home from "./pages/Home";
+const FavoritesPage = React.lazy(() => import("./pages/FavoritesPage"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 function App() {
   const [isCelsius, setIsCelsius] = useState(true);
-  const [city, setCity] = useState("");
+  const [homeCity, setHomeCity] = useState("");
+  const [favoritesCity, setFavoritesCity] = useState("");
   const [favorites, setFavorites] = useState(() => {
     const storedFavorites = localStorage.getItem("favorites");
     return storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -17,21 +22,48 @@ function App() {
   }, [favorites]);
 
   return (
-    <div className="wrapper">
-      <div className="header">
-        <img src={weatherLogo} alt="Weather Logo" />
-        <h1 className="header-title">My first weather app </h1>
-        <ToggleCelsius isCelsius={isCelsius} setIsCelsius={setIsCelsius} />
+    <BrowserRouter>
+      <div className="wrapper">
+        <div className="header">
+          <img src={weatherLogo} alt="Weather Logo" />
+          <h1 className="header-title">My first weather app</h1>
+          <ToggleCelsius isCelsius={isCelsius} setIsCelsius={setIsCelsius} />
+          <nav>
+            <Link to="/">🏠</Link> {` | `}
+            <Link to="/favorites">❤️</Link>
+          </nav>
+        </div>
+        <Suspense>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  isCelsius={isCelsius}
+                  city={homeCity}
+                  setCity={setHomeCity}
+                  favorites={favorites}
+                  setFavorites={setFavorites}
+                />
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <FavoritesPage
+                  favorites={favorites}
+                  setFavorites={setFavorites}
+                  city={favoritesCity}
+                  setCity={setFavoritesCity}
+                  isCelsius={isCelsius}
+                />
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </div>
-      <Favorites favorites={favorites} setCity={setCity} />
-      <InputSearch
-        isCelsius={isCelsius}
-        city={city}
-        setCity={setCity}
-        favorites={favorites}
-        setFavorites={setFavorites}
-      />
-    </div>
+    </BrowserRouter>
   );
 }
 
