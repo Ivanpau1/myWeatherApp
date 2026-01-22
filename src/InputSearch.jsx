@@ -56,33 +56,36 @@ export default function InputSearch({
       {weatherData && (
         <>
           <div className="main">
-            <h1 className="city">
-              {weatherData.name}
-              <ToggleFavorite
-                city={weatherData.name}
-                favorites={favorites}
-                setFavorites={setFavorites}
-              />
-            </h1>
-            <p className="temperature">
-              {isCelsius
-                ? `${weatherData.main.temp.toFixed(0)}°C`
-                : `${((weatherData.main.temp * 9) / 5 + 32).toFixed(0)}°F`}
-            </p>
-            <img
-              src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
-              alt={weatherData.weather[0].description}
-            />
-            <p className="condition">{weatherData.weather[0].main}</p>
-          </div>
-          <div className="weather-details">
-            <div>
-              <p>Humidity</p>
-              <p className="number">{weatherData.main.humidity}%</p>
+            <div className="main-info">
+              <h1 className="city">
+                {weatherData.name}
+                <ToggleFavorite
+                  city={weatherData.name}
+                  favorites={favorites}
+                  setFavorites={setFavorites}
+                />
+              </h1>
+              <p className="temperature">
+                {isCelsius
+                  ? `${weatherData.main.temp.toFixed(0)}°C`
+                  : `${((weatherData.main.temp * 9) / 5 + 32).toFixed(0)}°F`}
+              </p>
             </div>
-            <div>
-              <p>Wind Speed</p>
-              <p className="number">{weatherData.wind.speed}m/s</p>
+            <div className="additional-info">
+              <img
+                className="image"
+                src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+                alt={weatherData.weather[0].description}
+              />
+              <p className="condition">{weatherData.weather[0].main}</p>
+              <div className="humidity">
+                <p>Humidity</p>
+                <p>{weatherData.main.humidity}%</p>
+              </div>
+              <div className="wind-speed">
+                <p>Wind Speed</p>
+                <p>{weatherData.wind.speed}m/s</p>
+              </div>
             </div>
           </div>
         </>

@@ -3,7 +3,7 @@ export default function FavoriteCities({ favorites = [], setCity }) {
 
   return (
     <div className="favorites">
-      <h2>My favorite cities</h2>
+      <h2>Favorite cities</h2>
       <ul>
         {favorites.map((city) => (
           <li key={city}>
